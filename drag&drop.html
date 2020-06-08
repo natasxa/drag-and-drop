@@ -1,0 +1,52 @@
+<html>
+<head>  
+    <style>
+    img{position: absolute; width: 80px; image-orientation: flip; right: 20; top: 20}
+    body{ width: 100%; height: 100%; overflow: hidden;
+        background-image: url('https://avatars.mds.yandex.net/get-pdb/1244951/bbfaacdf-3538-46e1-a74a-ef2c76139551/s1200');
+        background-size:cover;
+    }
+    h1{ width: 100%;
+        position:fixed;
+        bottom: 0;
+        left:0;
+        color: yellow;
+        text-shadow:1px 1px 2px rgb(80, 33, 11);
+        opacity: 0;
+        }
+
+    </style> 
+</head>
+
+<body>   
+    <img id="bee" src="bee.png"/>
+    <center><h1 id="bzz">Bzzzz!</h1></center>
+   
+    <script>
+        var bee = document.getElementById("bee");   
+        bee.addEventListener("mousedown", (e) => { taxi(e, bee); });
+        document.body.addEventListener("mousemove", (e) => {flight(e, bee);});
+        bee.addEventListener("mouseup", (e) => {landing(e, bee);});            
+       
+            function taxi(e, bee) {
+                isMouseDown = true;
+                mouseOffset = {x: bee.offsetLeft - e.clientX, y: bee.offsetTop - e.clientY};
+            }          
+           
+            function flight(e, bee){   
+                e.preventDefault();            
+                if(isMouseDown == true) {
+                    bee.style.left = e.clientX + mouseOffset.x + "px";
+                    bee.style.top = e.clientY + mouseOffset.y + "px";    
+                    document.getElementById("bzz").style.opacity = 1;
+                }        
+            }
+
+            function landing(e, bee) {
+                isMouseDown = false;
+                document.getElementById("bzz").style.opacity = 0;
+            }
+
+    </script>   
+</body>
+</html>
